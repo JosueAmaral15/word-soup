@@ -17,11 +17,10 @@
                 const text = document.createTextNode(word_list[0]);
                 const div = document.createElement("div");
                 div.id = this.id;
-                let value = 1+parseInt(Math.random()*360);
-                div.style.transform = `rotate(${value}deg)`;
-                value = 1+parseInt(Math.random()*500);
+                let value = 1+parseInt(Math.random()*500);
                 let value2 = 1+parseInt(Math.random()*500);
-                div.style.transform = `translate(${value}px, ${value2}px)`;
+                let value3 = parseInt(Math.random()*40)-20;
+                div.style.transform = `translate(${value}px, ${value2}px) rotate(${value3}deg)`;
                 value = 10+parseInt(Math.random()*20);
                 div.style.fontSize = `${value}px`;
                 //div.style.backgroundColor = "orange";
