@@ -9,6 +9,7 @@
     <script>
         class Word {
             constructor(word_list, number) {
+                
                 this.id = `word${number}`;
                 this.word_list = word_list;
                 this.position = 0;
@@ -24,7 +25,9 @@
                 value = 10+parseInt(Math.random()*20);
                 div.style.fontSize = `${value}px`;
                 //div.style.backgroundColor = "orange";
-                div.style.color = "black";
+                const colors = ["black", "orange", "indigo", "lemonchiffon", "purple"];
+                value = parseInt(Math.random()*5);
+                div.style.color = colors[value];
                 div.style.fontWeight = "bold";
                 div.style.fontVariant = "small-caps";
                 div.style.fontFamily = "Courier New";
