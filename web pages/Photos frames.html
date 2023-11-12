@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>Photos slide</title>
+</head>
+<body>
+  <div>
+    <button id=b0>prev</button>
+    <img id="image" src="assets/2016-01-23 19.53.24.jpg" width=300 height=200>
+    <button id=b1>next</button>
+  </div>
+  <script>
+    var count = 0;
+    var pictures = ["assets/2016-01-23 19.53.24.jpg", "assets/2016-03-03 21.13.17-26.jpg", "assets/happy-child.jpg"];
+    var image = document.getElementById ("image");
+    function next_image () {
+      if (count < pictures.length -1)
+        count++;
+      else
+        count = 0;
+      image.src = pictures[count];
+      clearInterval (next_auto);
+      next_auto = false;
+    }
+    function next_image_auto () {
+      if (count < pictures.length -1)
+        count++;
+      else
+        count = 0;
+      image.src = pictures[count];
+    }
+    function prev_image () {
+      if (count > 0)
+        count--;
+      else
+        count = pictures.length -1;
+      image.src = pictures[count];
+      clearInterval (next_auto);
+      next_auto = false;
+    }
+    function return_auto () {
+      if (!next_auto)
+        next_auto = setInterval (next_image_auto, 1000);
+    }
+    function stop_auto () {
+      clearInterval (next_auto);
+      next_auto = false;
+    }
+    
+    var button0 = document.getElementById ("b0");
+    var button1 = document.getElementById ("b1");
+    var img = document.getElementById ("image");
+    button0.addEventListener ("click", prev_image);
+    button1.addEventListener ("click", next_image);
+    img.addEventListener ("mouseover", stop_auto);
+    var next_auto = setInterval (next_image_auto, 1000);
+    var next_auto_return = setInterval (return_auto, 7000);
+    
+  </script>
+</body>
+</html>

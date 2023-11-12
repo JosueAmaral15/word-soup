@@ -25,8 +25,8 @@
                 value = 10+parseInt(Math.random()*20);
                 div.style.fontSize = `${value}px`;
                 //div.style.backgroundColor = "orange";
-                const colors = ["black", "orange", "indigo", "lemonchiffon", "purple"];
-                value = parseInt(Math.random()*5);
+                const colors = ["black", "orange", "indigo", "navy", "fuchsia"];
+                value = parseInt(Math.random()*colors.length);
                 div.style.color = colors[value];
                 div.style.fontWeight = "bold";
                 div.style.fontVariant = "small-caps";
@@ -38,7 +38,7 @@
                 document.body.appendChild(div);
             }
         }
-
+        
         change_words = () => {
             el = list[count];
             if (!el.invert) {
@@ -66,7 +66,7 @@
             if (count >= list.length)
                 count = 0;
         }
-
+        
         const words = [["ladrão", "padrão", "patrão"], ["arde", "tarde", "trade"], ["tem", "trem", "traem"], ["vida", "ida", "dia"], ["objeto", "objetivo"], ["net", "nem", "bem", "também", "tambor", "labor", "lábio", "sábio", "sabiá"], ["ciumento", "cimento", "conhecimento"], ["contra", "conta", "canta", "cinta", "cinto"], ["fala", "falta", "alta", "lata "], ["fato", "ato", "gato", "gasto", "pasto", "pastor", "castor", "trocas", "brocas"], ["menta", "mental", "metal"], ["mar", "tomar", "retomar"], ["cobra", "cobrar", "recobrar"], ["fundamento", "aprofundamento"], ["olha", "rolha"], ["foi", "fio"], ["temo", "tempo"], ["ENEM", "nenem"], ["novamente", "nova mente"], ["informação", "formação"], ["novo", "ovo"], ["dias", "duas"], ["caso", "caos"], ["esperança", "perseverança"], ["esperança", "espera"], ["iguana", "grana"], ["ave", "aveia"], ["ave", "Avestruz"], ["tarde", "Trade"], ["outro", "ouro"], ["maior", "Mário"], ["now", "snow", "show", "how"], ["pai", "pia"], ["pois", "pais"], ["muito","mito"], ["comum", "com um"], ["água", "águia"], ["houve", "couve"], ["tanto", "tato", "ato", "gato", "grato", "rato"], ["avião", "gavião"], ["coração", "oração", "ração", "ação", "anão", "não", "pão"], ["cujo", "sujo", "suco", "saco", "seco", "seca", "seda"], ["entrada", "estrada"], ["tornear", "tornar", "torrar", "forrar", "jorrar"], ["osso", "isso"], ["ainda", "anda", "panda"], ["lotação", "notação", "natação"], ["estamos", "estados"], ["escola", "escolha"], ["fato", "fito", "foto", "feto", "afeto"], ["preste", "peste", "leste"], ["cante", "conte", "corte", "norte", "sorte"], ["bronca", "broca", "boca", "oca"], ["treina", "trena"], ["fagulha", "agulha"], ["linda", "lida"], ["conforme", "confirme"]];
         let list = new Array();
         let count = 0;

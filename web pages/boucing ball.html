@@ -1,0 +1,71 @@
+<html>
+<head>
+    
+</head>
+<body>
+    <script type="text/javascript">
+        var Panel = {
+          x : 0,
+          y : 0,
+          width : 25,
+          height : 20,
+          background : '...',
+          create_panel : function () {
+            panel = new Array ();
+            for (i = 0; i < this.height; i++) {
+              panel[i] = new Array ();
+              for (j = 0; j < this.width; j++)
+                panel[i][j] = this.background;
+            }
+            return panel;
+          },
+          insert_ball : function () {
+            panel = this.create_panel ();
+          return panel;
+          },
+          
+        };
+        
+        var Ball = {
+          carac : '@',
+          x : 6, 
+          y : 5, 
+          direction_x : -1, 
+          direction_y : 1,
+          velocity : 100,
+          panel : Panel.insert_ball (),
+          pause_ball : function () { 
+            this.direction_x = 0; 
+            this.direction_y = 0;
+          },
+          continue_ball : function () { 
+            this.direction_x = 1; 
+            this.direction_y = 1;
+          },
+          run : function () {
+            //console.log (Ball.x, Ball.y, Ball.direction_x, Ball.direction_y, Panel.width);
+            this.panel[Ball.y][Ball.x] = Panel.background;
+            if (Ball.x < Panel.width -1 && Ball.x > 0)
+              Ball.x+= Ball.direction_x;
+            else {
+              Ball.direction_x = -Ball.direction_x;
+              Ball.x += Ball.direction_x;
+            }
+            if (Ball.y < Panel.height -1 && Ball.y > 0)
+              Ball.y+= Ball.direction_y;
+            else {
+              Ball.direction_y = -Ball.direction_y;
+              Ball.y += Ball.direction_y;
+            }
+            panel_str = new String ();
+            this.panel[Ball.y][Ball.x] = Ball.carac;
+            for (i = 0; i < Panel.height; i++) 
+              panel_str += this.panel[i].join ('') + '<br />';
+            document.body.innerHTML = panel_str;
+          }
+        };
+        setInterval (Ball.run, Ball.velocity);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
+    <title>Game car</title>
+  </head>
+  <body>
+
+    <p>Utilize as teclas a, d, w e s para mover o carro</p>
+    <div id=path style='background:green; position:relative; top:0px; left:0px; width:600; height: 500'>
+      <!--<img id=img_path src=caminho.png border=0 style='width:600px; height:600px;'>-->
+      <div id=car style='position:absolute; top:245px; left:530px;'>
+        <img id="img_car" src="assets/car.png" style='width:45px; height:75px; transform: rotate(-90deg)'>
+      </div>
+    </div>
+    <script language="Javascript">
+      function sinDegrees(angleDegrees) {
+        return Math.sin(angleDegrees*Math.PI/180);
+      }
+      
+      function cosDegrees(angleDegrees) {
+        return Math.cos(angleDegrees*Math.PI/180);
+      }
+    
+      var Car = {x:330, y:245, max_acc : 10, max_re : -5, acc : 0, rotate :0, rot_count : 2, moving :false, width :  parseInt (document.getElementById ("img_car").style.width), height : parseInt (document.getElementById ("img_car").style.height), limit_x : parseInt (document.getElementById ("path").style.width), limit_y : parseInt (document.getElementById ("path").style.height),  graphic: document.getElementById ("car"), 
+      
+      move : function () {
+            if (Car.x > 0 && Car.x + Car.height < Car.limit_x)
+              Car.x -= Car.acc * cosDegrees (Car.rotate);
+            else {
+              if (Car.x + Car.height > Car.limit_x)
+                Car.x = Car.limit_x -Car.height -2;              
+              else
+                Car.x = 2;
+              Car.acc = 0;
+            }            
+              
+            if (Car.y > 0 && Car.y + Car.height < Car.limit_y)
+              Car.y -= Car.acc * sinDegrees (Car.rotate);
+            else {
+              if (Car.y + Car.height > Car.limit_y)
+                  Car.y = Car.limit_y -Car.height -2;              
+                else
+                  Car.y = 2;
+                Car.acc = 0;
+            }
+
+          Car.graphic.style.left = Car.x+"px";
+          Car.graphic.style.top = Car.y +"px";
+          Car.accelerate_degrees ();
+        },
+        
+      rotate_left : function () {
+        Car.rotate+=Car.rot_count * Car.acc/Car.max_acc;
+        Car.graphic.style.transform = "rotate("+String(Car.rotate)+"deg)";   
+        },
+        
+      rotate_right : function () {
+          Car.rotate-=Car.rot_count *Car.acc/Car.max_acc;
+          Car.graphic.style.transform = "rotate("+String(Car.rotate)+"deg)";;
+        },
+        
+      accelerate_high : function () {
+        
+          if (Car.acc < Car.max_acc)      
+            Car.acc+=0.4;
+        },  
+        
+      accelerate_low : function () {
+        
+          if (Car.acc > Car.max_re)
+            Car.acc-=0.4;
+        },
+        
+        accelerate_degrees : function () {
+          if (Car.acc > 0.01)
+            Car.acc -= 0.1
+        },
+        
+        run : function () {
+          document.body.onkeypress = function (){
+            if (event.keyCode == "97") {
+              Car.rotate_right ();
+            }
+            else if (event.keyCode == "100") {
+              Car.rotate_left ();
+            }
+            else if (event.keyCode == "119") {
+              Car.accelerate_high ();
+            }
+            else if (event.keyCode == "115") {
+              Car.accelerate_low ();
+            }
+            /*
+            if (Car.acc > 0) {
+              if (!Car.moving)
+                car_move = setInterval (Car.move, 100);
+              Car.moving = true;
+            }
+            else {
+              clearInterval (car_move);
+              Car.moving = false;
+            }
+            console.log ("TEST2",Car.moving);
+            */
+          }
+          car_move = setInterval (Car.move, 100);
+          Car.graphic.style.transform = "rotate("+String(Car.rotate)+"deg)";
+       },
+      }
+      
+      Car.run ();
+      
+    </script>
+  </body>
+</html>
